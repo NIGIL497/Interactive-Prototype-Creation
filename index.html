@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freelance Marketplace</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+header{
+    background:#2563eb;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+.hero{
+    text-align:center;
+    padding:40px 20px;
+}
+
+.hero h2{
+    margin-bottom:15px;
+    color:#1e293b;
+}
+
+.hero input{
+    width:280px;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:6px;
+}
+
+.hero button{
+    padding:12px 18px;
+    border:none;
+    background:#2563eb;
+    color:white;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.projects{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.card h3{
+    color:#2563eb;
+    margin-bottom:10px;
+}
+
+.card p{
+    margin-bottom:10px;
+}
+
+.card button{
+    background:#10b981;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.form-section{
+    width:90%;
+    max-width:600px;
+    margin:40px auto;
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.form-section h2{
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.form-section input,
+.form-section textarea{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:1px solid #ccc;
+    border-radius:6px;
+}
+
+.post-btn{
+    width:100%;
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:12px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+#message{
+    text-align:center;
+    margin-top:10px;
+    font-weight:bold;
+}
+
+footer{
+    margin-top:40px;
+    background:#1e293b;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Freelance Marketplace</h1>
+    <p>Connect Clients & Freelancers</p>
+</header>
+
+<section class="hero">
+    <h2>Find Your Dream Project</h2>
+    <input type="text" id="search" placeholder="Search Projects">
+    <button onclick="searchProject()">Search</button>
+</section>
+
+<section class="projects">
+
+    <div class="card">
+        <h3>Web Developer</h3>
+        <p>Create a responsive website.</p>
+        <p><b>Budget:</b> ₹15,000</p>
+        <button onclick="applyJob()">Apply Now</button>
+    </div>
+
+    <div class="card">
+        <h3>UI/UX Designer</h3>
+        <p>Design modern mobile interfaces.</p>
+        <p><b>Budget:</b> ₹12,000</p>
+        <button onclick="applyJob()">Apply Now</button>
+    </div>
+
+    <div class="card">
+        <h3>Mobile App Developer</h3>
+        <p>Build Android applications.</p>
+        <p><b>Budget:</b> ₹20,000</p>
+        <button onclick="applyJob()">Apply Now</button>
+    </div>
+
+</section>
+
+<section class="form-section">
+    <h2>Post a Project</h2>
+
+    <input type="text" id="title" placeholder="Project Title">
+
+    <textarea id="description" rows="5"
+    placeholder="Project Description"></textarea>
+
+    <button class="post-btn" onclick="postProject()">
+        Post Project
+    </button>
+
+    <p id="message"></p>
+</section>
+
+<footer>
+    <p>© 2026 Freelance Marketplace | Developed by Nigil</p>
+</footer>
+
+<script>
+
+function applyJob(){
+    alert("Application Submitted Successfully!");
+}
+
+function searchProject(){
+
+    let search =
+    document.getElementById("search").value.toLowerCase();
+
+    let cards =
+    document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+
+        let title =
+        card.querySelector("h3").innerText.toLowerCase();
+
+        if(title.includes(search)){
+            card.style.display = "block";
+        }
+        else{
+            card.style.display = "none";
+        }
+    });
+}
+
+function postProject(){
+
+    let title =
+    document.getElementById("title").value;
+
+    let description =
+    document.getElementById("description").value;
+
+    let message =
+    document.getElementById("message");
+
+    if(title === "" || description === ""){
+        message.innerHTML =
+        "Please fill all fields!";
+        message.style.color = "red";
+    }
+    else{
+
+        message.innerHTML =
+        "Project Posted Successfully!";
+        message.style.color = "green";
+
+        document.getElementById("title").value = "";
+        document.getElementById("description").value = "";
+    }
+}
+
+</script>
+
+</body>
+  </html>
